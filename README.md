@@ -1,34 +1,80 @@
-# Banking App – Spring Boot + MySQL + Docker + Nginx on AWS EC2
+# DevOps2 – Spring Boot + Docker + Nginx Deployment
 
-This project is a simple banking backend application demonstrating full-stack deployment with:
+This project demonstrates a production-ready deployment of a Spring Boot web application using **Docker**, **Nginx**, and **Maven**, following DevOps best practices for containerization and lightweight service orchestration.
 
-- ☕ Spring Boot (Java)
-- 🐬 MySQL (Dockerized)
-- 🐳 Docker & Docker Compose
-- 🌐 Nginx as reverse proxy
-- ☁️ Deployed on AWS EC2 Linux instance
+It includes a reverse proxy setup, SQL initialization script, and a modular deployment structure designed for portability and scalability.
 
 ---
 
-##  Features
+## Features
 
-- User account creation and listing
-- Basic banking endpoints (customers, accounts, withdrawals)
-- API exposed via REST
-- MySQL persistence
-- Dockerized with Compose
-- Reverse proxy through Nginx (port 80 → app on 8080)
+* **Spring Boot backend** (Java)
+* **Dockerized application** for reproducible builds
+* **Nginx reverse proxy** (port 80 → app on 8080)
+* **SQL initialization** via `sql.txt`
+* **Maven build lifecycle** for clean packaging
+* **Lightweight, cloud-ready deployment architecture**
 
 ---
 
-##  Technologies
+## Tech Stack
 
-| Layer        | Tech                         |
-|--------------|------------------------------|
-| Backend      | Java + Spring Boot           |
-| Database     | MySQL                        |
-| Container    | Docker, Docker Compose       |
-| Web Server   | Nginx                        |
-| Cloud Host   | AWS EC2 (Amazon Linux)       |
+| Layer                 | Technology                    |
+| --------------------- | ----------------------------- |
+| **Backend**           | Java, Spring Boot             |
+| **Build System**      | Maven                         |
+| **Containerization**  | Docker                        |
+| **Reverse Proxy**     | Nginx                         |
+| **Database Setup**    | SQL initialization script     |
+| **Deployment Target** | Linux server / cloud instance |
 
+---
+
+## How to Run
+
+###  Build the application
+
+```bash
+mvn clean package
+```
+
+###  Build Docker image
+
+```bash
+docker build -t devops2-app .
+```
+
+### Run application container
+
+```bash
+docker run -p 8080:8080 devops2-app
+```
+
+### Run Nginx reverse proxy
+
+```bash
+docker run -p 80:80 \
+  -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro \
+  nginx
+```
+
+Application is now reachable at:
+
+```
+http://localhost
+```
+
+---
+
+## Purpose
+
+This project showcases:
+
+* DevOps fundamentals
+* Containerization best practices
+* Reverse proxy configuration
+* Backend deployment workflow
+* Cloud-ready and portable application architecture
+
+Ideal for demonstrating DevOps engineering and backend deployment skills.
 
